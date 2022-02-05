@@ -34,12 +34,6 @@ public class AdminController {
 	@Autowired
 	private AdminService adminService;
 	
-//	@RequestMapping(value="")
-//	public String index(Model model) {
-//		model.addAttribute("title", "My Cheeses");
-//		return "admin/categories";
-//	}	
-	
 	// FUNCTIONAL
 	@GetMapping(path="/admins")
 	public @ResponseBody Iterable<Admin> getAllAdmins() {
@@ -47,15 +41,12 @@ public class AdminController {
 		return adminService.getAllAdmins();
 	}
 
-	
-	// --> NOT FUNCTIONAL
 	@GetMapping(path="admins/{adminID}")
 	public @ResponseBody Admin retrieveAdmins(@PathVariable Integer adminID) {
 		Admin theAdmin = adminService.getAdmin(adminID);
 		System.out.println("Showing Admin: "+theAdmin);
 		return theAdmin;
 	}
-
 	
 	// FUNCTIONAL
 	@PostMapping(path="/admins")
@@ -65,8 +56,7 @@ public class AdminController {
 		System.out.println("Created New Admin Account: "+savedAdmin);
 		return ResponseEntity.created(location).build();
 	}
-	
-	
+		
 	// FUNCTIONAL
 	@PutMapping(path="/admins/{adminID}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
@@ -78,8 +68,7 @@ public class AdminController {
 		System.out.println("Saved Admin Information for: "+savedAdmin);
 	}
 
-	
-	// FUNCTIONAL!
+	// FUNCTIONAL
 	@DeleteMapping(path="/admins/{adminID}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deleteAdmin(@PathVariable Integer adminID) throws AdminNotFoundException {

@@ -37,25 +37,7 @@ import com.amydosh.sportyshoes.service.CustomerService;
 public class CustomerController {
 	
 	@Autowired
-	private CustomerService customerService;
-
-	
-	// Trying Model and View:
-	@GetMapping(path="/showViewPage")
-	public String passParametersWithModel(Model model) {
-		Map<String, String> map = new HashMap<>();
-		map.put("spring", "mvc");
-		model.addAttribute("message", "Baeldung");
-		model.mergeAttributes(map);
-		return "viewPage";
-	}
-
-	
-//	@GetMapping(path="/addCustomer")
-//	public String addCustomerView(Model model) {
-//		model.addAttribute("customer", new Customer());
-//		return "view-customers";
-//	}
+	private CustomerService customerService;	
 	
 	// FUNCTIONAL
 	@GetMapping(path="/customers")
@@ -64,11 +46,6 @@ public class CustomerController {
 		return customerService.getAllCustomers();
 	}
 	
-	
-	
-	// ----------------------------------------------------
-	
-	
 	// FUNCTIONAL
 	@GetMapping(path="customers/{custId}")
 	public @ResponseBody Customer retrieveCustomer(@PathVariable Integer custId) {
@@ -76,7 +53,6 @@ public class CustomerController {
 		System.out.println("Showing specific customer in database: "+theCustomer);
 		return theCustomer;
 	}
-
 	
 	// FUNCTIONAL
 	@PostMapping(path="/customers")
@@ -86,7 +62,6 @@ public class CustomerController {
 		System.out.println("Created New Customer: "+savedCustomer);
 		return ResponseEntity.created(location).build();
 	}
-	
 	
 	// FUNCTIONAL
 	@PutMapping(path="/customers/{custId}")
@@ -101,7 +76,7 @@ public class CustomerController {
 	}
 
 	
-	// FUNCTIONAL!
+	// FUNCTIONAL
 	@DeleteMapping(path="/customers/{custId}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deleteCustomer(@PathVariable Integer custId) throws CustomerNotFoundException {

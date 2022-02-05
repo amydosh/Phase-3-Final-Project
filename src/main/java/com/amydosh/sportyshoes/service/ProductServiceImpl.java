@@ -13,45 +13,32 @@ public class ProductServiceImpl implements ProductService {
 	
 	@Autowired
     private ProductRepository productRepository;
-
-
+	
     @Override
     public Product addProduct(Product theProduct){
     	return productRepository.saveAndFlush(theProduct);
     }
-
-
 	@Override
 	public Product getProduct(Integer theId) {
 		return productRepository.getById(theId);
 	}
-	
 	@Override
 	public Iterable<Product> getAllProducts() {
 		return productRepository.findAll();
 	}
-
-
 	@Override
 	public Product saveProduct(Product theProduct) {
 		return productRepository.save(theProduct);
 	}
-
-
 	@Override
 	public void deleteProduct(Integer theId) {
 		productRepository.deleteById(theId);
 		
 	}
-
-
 	@Override
 	public List<Product> getProductByProductStyle(String productStyle) {
 		return productRepository.getByProductStyle(productStyle);
 	}
-
-
-
 	@Override
 	public List<Product> getProductByProductColor(String productColor) {
 		return productRepository.getByProductColor(productColor);

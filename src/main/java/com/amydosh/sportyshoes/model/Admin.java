@@ -19,39 +19,30 @@ public class Admin {
 	public Admin() {
 		super();
 	}
-
 	public Admin(Integer adminID, String adminUN, String adminPW) {
 		super();
 		this.adminID = adminID;
 		this.adminUN = adminUN;
 		this.adminPW = adminPW;
 	}
-
 	public String getAdminUN() {
 		return adminUN;
 	}
-
 	public void setAdminUN(String adminUN) {
 		this.adminUN = adminUN;
 	}
-
 	public String getAdminPW() {
 		return adminPW;
 	}
-
 	public void setAdminPW(String adminPW) {
 		this.adminPW = adminPW;
 	}
-
 	public Integer getAdminID() {
 		return adminID;
 	}
-
 	@Override
 	public String toString() {
 		return String.format("Admin [adminID=%s, adminUN=%s, adminPW=%s]", adminID, adminUN, adminPW);
 	}
 	
-	
-
 }

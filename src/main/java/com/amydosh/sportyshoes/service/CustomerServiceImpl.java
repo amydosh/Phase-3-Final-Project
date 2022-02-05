@@ -45,22 +45,5 @@ public class CustomerServiceImpl implements CustomerService {
 		customerRepository.deleteById(custId);
 		
 	}
-	
-	
-
-//	@Override
-//	public List<Customer> getByNameAsc(String name) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//
-//
-//	@Override
-//	public List<Customer> getByNameDesc(String name) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//
-//
 
 }

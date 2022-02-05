@@ -27,47 +27,33 @@ public class Customer {
 		this.custEmail = custEmail;
 		this.custPW = custPW;
 	}
-	
 	public Customer() {
 		super();
 	}
-
 	public String getCustName() {
 		return custName;
 	}
-
 	public void setCustName(String custName) {
 		this.custName = custName;
 	}
-
 	public String getCustEmail() {
 		return custEmail;
 	}
-
 	public void setCustEmail(String custEmail) {
 		this.custEmail = custEmail;
 	}
-
 	public String getCustPW() {
 		return custPW;
 	}
-
 	public void setCustPW(String custPW) {
 		this.custPW = custPW;
 	}
-
 	public Integer getCustID() {
 		return custID;
 	}
-
 	@Override
 	public String toString() {
 		return String.format("Customer [custID=%s, custName=%s, custEmail=%s, custPW=%s]", custID, custName, custEmail,
 				custPW);
 	}
-	
-	
-	
-	
-	
 }

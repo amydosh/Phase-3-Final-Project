@@ -18,12 +18,4 @@ public interface CustomerService {
 
 	public void deleteCustomer(Integer custId);
 
-//	List<Customer> getByNameAsc(String name);
-//
-//	List<Customer> getByNameDesc(String name);
-//
-//	Customer saveCustomer(Customer theCustomer);
-//
-//	void deleteCustomer(Integer theId);
-
 }

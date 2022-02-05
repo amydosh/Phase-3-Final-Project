@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -32,7 +33,6 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 	
-	
 	// FUNCTIONAL
 	@GetMapping(path="/products")
 	public @ResponseBody Iterable<Product> getAllProducts() {
@@ -40,7 +40,6 @@ public class ProductController {
 		return productService.getAllProducts();
 	}
 
-	
 	// FUNCTIONAL
 	@GetMapping(path="/products/{theId}")
 	public @ResponseBody Product retrieveProducts(@PathVariable Integer theId) {
@@ -49,26 +48,22 @@ public class ProductController {
 		return theProduct;
 	}
 	
-	
-	// TESTING
-//	@GetMapping(path="/products/{productStyle}")
-	@GetMapping
-	public @ResponseBody List<Product> retrieveProductsByStyle(@RequestParam(value="productStyle") String productStyle) {
+	// FUNCTIONAL
+	@GetMapping(path="/products/filterbystyle/{productStyle}")
+	public @ResponseBody List<Product> retrieveProductsByStyle(@PathVariable String productStyle) {
 		List<Product> theProducts = productService.getProductByProductStyle(productStyle);
 		System.out.println("Showing all products of style "+productStyle+" in database: "+theProducts);
-		return productService.getProductByProductStyle(productStyle);
+		return theProducts;
 	}
 	
-//	// TESTING
-//	@GetMapping(path="/products/{productColor}")
-//	@GetMapping
-//	public @ResponseBody List<Product> retrieveProductsByColor(@RequestParam(value="productColor") String productColor) {
-//		List<Product> theProducts = productService.getProductByProductColor(productColor);
-//		System.out.println("Showing all products of color "+productColor+" in database: "+theProducts);
-//		return productService.getProductByProductColor(productColor);
-//	}
+	// FUNCTIONAL
+	@GetMapping(path="/products/filterbycolor/{productColor}")
+	public @ResponseBody List<Product> retrieveProductsByColor(@PathVariable String productColor) {
+		List<Product> theProducts = productService.getProductByProductColor(productColor);
+		System.out.println("Showing all products of color "+productColor+" in database: "+theProducts);
+		return theProducts;
+	}
 
-	
 	// FUNCTIONAL
 	@PostMapping(path="/products")
 	public ResponseEntity<Product> createProduct(@Valid @RequestBody Product theProduct) {
@@ -77,7 +72,6 @@ public class ProductController {
 		System.out.println("Created New Product: "+savedProduct);
 		return ResponseEntity.created(location).build();
 	}
-	
 	
 	// FUNCTIONAL
 	@PutMapping(path="/products/{theId}")
@@ -92,8 +86,7 @@ public class ProductController {
 		System.out.println("Saved Product Information for: "+savedProduct);
 	}
 
-	
-	// FUNCTIONAL!
+	// FUNCTIONAL
 	@DeleteMapping(path="/products/{theId}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deleteProduct(@PathVariable Integer theId) throws ProductNotFoundException {

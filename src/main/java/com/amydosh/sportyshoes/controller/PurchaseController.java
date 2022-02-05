@@ -32,7 +32,6 @@ public class PurchaseController {
 	
 	@Autowired
 	private PurchaseService purchaseService;
-
 	
 	// FUNCTIONAL
 	@GetMapping(path="/purchases")
@@ -41,23 +40,19 @@ public class PurchaseController {
 		return purchaseService.getAllPurchases();
 	}
 	
-//	@GetMapping
-//	public @ResponseBody List<Purchase> retrievePurchasesByPurchasedBy(@RequestParam(value="purchasedBy") String purchasedBy) {
-//		List<Purchase> thePurchases = purchaseService.getPurchaseByPurchasedBy(purchasedBy);
-//		System.out.println("Showing all products of style "+purchasedBy+" in database: "+thePurchases);
-//		return purchaseService.getPurchaseByPurchasedBy(purchasedBy);
-//	}
-	
-	@GetMapping
-	public @ResponseBody List<Purchase> retrievePurchasesByPurchaseDate(@RequestParam(value="purchaseDate") String purchaseDate){
-		List<Purchase> thePurchases = purchaseService.getPurchaseByPurchaseDate(purchaseDate);
-		System.out.println("Showing all purchases made on date: "+purchaseDate+" ----"+thePurchases);
-		return purchaseService.getPurchaseByPurchaseDate(purchaseDate);
+	@GetMapping(path="/purchases/filterbyuser/{purchasedBy}")
+	public @ResponseBody List<Purchase> retrievePurchasesByPurchasedBy(@PathVariable String purchasedBy) {
+		List<Purchase> thePurchases = purchaseService.getPurchaseByPurchasedBy(purchasedBy);
+		System.out.println("Showing all products of style "+purchasedBy+" in database: "+thePurchases);
+		return thePurchases;
 	}
 	
-	
-	// ----------------------------------------------------
-	
+	@GetMapping(path="/purchases/filterbydate/{purchaseDate}")
+	public @ResponseBody List<Purchase> retrievePurchasesByPurchaseDate(@PathVariable String purchaseDate){
+		List<Purchase> thePurchases = purchaseService.getPurchaseByPurchaseDate(purchaseDate);
+		System.out.println("Showing all purchases made on date: "+purchaseDate+" ----"+thePurchases);
+		return thePurchases;
+	}
 	
 	// FUNCTIONAL
 	@GetMapping(path="purchases/{transRecord}")
@@ -66,7 +61,6 @@ public class PurchaseController {
 		System.out.println("Showing specific customer in database: "+thePurchase);
 		return thePurchase;
 	}
-
 	
 	// FUNCTIONAL
 	@PostMapping(path="/purchases")
@@ -76,7 +70,6 @@ public class PurchaseController {
 		System.out.println("Created New Customer: "+savedPurchase);
 		return ResponseEntity.created(location).build();
 	}
-	
 	
 	// FUNCTIONAL
 	@PutMapping(path="/purchases/{transRecord}")
@@ -91,8 +84,7 @@ public class PurchaseController {
 		System.out.println("Saved Customer Information for: "+savedPurchase);
 	}
 
-	
-	// FUNCTIONAL!
+	// FUNCTIONAL
 	@DeleteMapping(path="/purchases/{transRecord}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deletePurchase(@PathVariable Integer transRecord) throws PurchaseNotFoundException {
