@@ -1,6 +1,7 @@
 package com.amydosh.sportyshoes.controller;
 
 import java.net.URI;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -14,18 +15,18 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.amydosh.sportyshoes.exception.CustomerNotFoundException;
 import com.amydosh.sportyshoes.exception.ProductNotFoundException;
-import com.amydosh.sportyshoes.model.Customer;
 import com.amydosh.sportyshoes.model.Product;
-import com.amydosh.sportyshoes.service.CustomerService;
 import com.amydosh.sportyshoes.service.ProductService;
 
 @Controller
+@RequestMapping("product")
 public class ProductController {
 	
 	@Autowired
@@ -41,12 +42,31 @@ public class ProductController {
 
 	
 	// FUNCTIONAL
-	@GetMapping(path="products/{theId}")
+	@GetMapping(path="/products/{theId}")
 	public @ResponseBody Product retrieveProducts(@PathVariable Integer theId) {
 		Product theProduct = productService.getProduct(theId);
 		System.out.println("Showing specific product in database: "+theProduct);
 		return theProduct;
 	}
+	
+	
+	// TESTING
+//	@GetMapping(path="/products/{productStyle}")
+	@GetMapping
+	public @ResponseBody List<Product> retrieveProductsByStyle(@RequestParam(value="productStyle") String productStyle) {
+		List<Product> theProducts = productService.getProductByProductStyle(productStyle);
+		System.out.println("Showing all products of style "+productStyle+" in database: "+theProducts);
+		return productService.getProductByProductStyle(productStyle);
+	}
+	
+//	// TESTING
+//	@GetMapping(path="/products/{productColor}")
+//	@GetMapping
+//	public @ResponseBody List<Product> retrieveProductsByColor(@RequestParam(value="productColor") String productColor) {
+//		List<Product> theProducts = productService.getProductByProductColor(productColor);
+//		System.out.println("Showing all products of color "+productColor+" in database: "+theProducts);
+//		return productService.getProductByProductColor(productColor);
+//	}
 
 	
 	// FUNCTIONAL

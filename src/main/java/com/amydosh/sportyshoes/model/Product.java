@@ -15,7 +15,7 @@ public class Product {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Integer theId;
+	Integer theId;
 	String productStyle;
 	String productSize;
 	String productColor;

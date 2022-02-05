@@ -10,7 +10,7 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
     <context:annotation-config />
-    <context:component-scan base-package="com.amydosh.sportyshoes" />
+    <context:component-scan base-package="com.amydosh.sportyshoes.controller" />
     <beans:bean id="jspViewResolver"
         class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <beans:property name="viewClass"
@@ -37,7 +37,7 @@
     <beans:bean id="sessionFactory"
         class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
         <beans:property name="dataSource" ref="dataSource"></beans:property>
-          <beans:property name="packagesToScan" value="com.sportyshoes.entity"></beans:property>
+          <beans:property name="packagesToScan" value="com.amydosh.sportyshoes.controller"></beans:property>
         <beans:property name="configLocation">
             <beans:value>classpath:hibernate.cfg.xml</beans:value>
         </beans:property>

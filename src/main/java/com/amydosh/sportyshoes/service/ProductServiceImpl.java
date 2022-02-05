@@ -1,9 +1,10 @@
 package com.amydosh.sportyshoes.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.amydosh.sportyshoes.model.Product;
-import com.amydosh.sportyshoes.repository.CustomerRepository;
 import com.amydosh.sportyshoes.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 
@@ -41,6 +42,19 @@ public class ProductServiceImpl implements ProductService {
 	public void deleteProduct(Integer theId) {
 		productRepository.deleteById(theId);
 		
+	}
+
+
+	@Override
+	public List<Product> getProductByProductStyle(String productStyle) {
+		return productRepository.getByProductStyle(productStyle);
+	}
+
+
+
+	@Override
+	public List<Product> getProductByProductColor(String productColor) {
+		return productRepository.getByProductColor(productColor);
 	}
 
 }
